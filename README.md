@@ -23,6 +23,7 @@ To prepare for inscribing multiple pieces of data:
 
 ```javascript
 import { prepareToInscribeMultipleInscriptions } from 'bells-inscriber';
+import { networks } from 'belcoinjs-lib'
 
 const params = {
   signPsbtHex: async (psbtHex) => { /* Your signing function */ },
@@ -31,7 +32,7 @@ const params = {
   amount: 5, // Number of inscriptions
   signleInscriptionCost: 1000, // Cost for each inscription in satoshis
   address: 'your-bellscoin-address',
-  network: { /* Bellscoin network config */ }
+  network: networks.bellcoin // or networks.testnet
 };
 
 prepareToInscribeMultipleInscriptions(params)
@@ -45,6 +46,7 @@ To inscribe your data:
 
 ```javascript
 import { inscribe } from 'bells-inscriber';
+import { networks } from 'belcoinjs-lib'
 
 const inscribeParams = {
   toAddress: 'recipient-address',
@@ -52,7 +54,7 @@ const inscribeParams = {
   contentType: 'text/plain',
   data: Buffer.from('Hello, Bellscoin!'),
   feeRate: 1,
-  network: { /* Bellscoin network config */ },
+  network: networks.bellcoin,
   utxos: /* Array of UTXOs */,
   publicKey: Buffer.from('your-public-key'),
   signPsbtHex: async (psbtHex) => { /* Your signing function */ }
